@@ -246,7 +246,7 @@
 
     <div class="search-container">
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="🔍 ناو یان کورتکراوەی شار بپشکنە (نموونە: Chicago, TX, GA)..." oninput="filterData()">
+            <input type="text" id="searchInput" placeholder="🔍 ناو یان کورتکراوەی شار بپشکنە (نموونە: Chicago, TX, Houston)..." oninput="filterData()">
         </div>
     </div>
 
@@ -498,17 +498,18 @@
             return;
         }
 
-        let normalized = rawInput
+        // وەرگێڕانی وشە کوردییە باوەکان
+        let searchTerm = rawInput
             .replace(/چیکاهۆ|شیکاگو|چیکاگو/g, "chicago")
             .replace(/تێکساس/g, "tx")
             .replace(/جۆرجیا/g, "ga")
             .replace(/فلۆریدا/g, "fl")
             .replace(/مەیامی/g, "miami");
 
+        // فیلتەرکردنی تەنها سەر ناوی شار (item.name) بێ گوێدانە ناوی بەندەرەکە
         const filtered = shippingData.filter(item => {
             const cityName = item.name.toLowerCase();
-            return cityName.includes(normalized) || 
-                   normalized.split(' ').every(word => cityName.includes(word));
+            return cityName.includes(searchTerm);
         });
 
         renderTable(filtered);
