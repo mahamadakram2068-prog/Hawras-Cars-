@@ -247,7 +247,7 @@
 
     <div class="search-container">
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="🔍 ناو یان کورتکراوەی شار بپشکنە (نموونە: Chicago, PA, Houston)..." oninput="filterData()">
+            <input type="text" id="searchInput" placeholder="🔍 ناو یان کورتکراوەی شار بپشکنە (نموونە: Los Angeles, CA, NY, Alaska)..." oninput="filterData()">
         </div>
     </div>
 
@@ -285,236 +285,67 @@
 
 <script>
     const shippingData = [
+        // ALASKA (AK)
+        { name: "AK - ALASKA (Anchorage / Fairbanks)", port: "PACIFIC PORT", price: "~ $5,000" },
+
+        // CALIFORNIA (CA)
+        { name: "CA - LOS ANGELES / Gardena / Carson", port: "LOS ANGELES, CA", price: "$2,000 - $2,200" },
+        { name: "CA - SAN DIEGO", port: "LOS ANGELES, CA", price: "$2,100 - $2,300" },
+        { name: "CA - SACRAMENTO / South Sacramento", port: "LOS ANGELES, CA", price: "$2,200 - $2,400" },
+        { name: "CA - RIVERSIDE / Mentone", port: "LOS ANGELES, CA", price: "$2,000 - $2,250" },
+        { name: "CA - FONTANA / Jurupa Valley", port: "LOS ANGELES, CA", price: "$2,000 - $2,250" },
+        { name: "CA - SAN JOSE / Fremont / San Martin", port: "LOS ANGELES, CA", price: "$2,250 - $2,450" },
+        { name: "CA - BAKERSFIELD", port: "LOS ANGELES, CA", price: "$2,150 - $2,350" },
+        { name: "CA - FRESNO", port: "LOS ANGELES, CA", price: "$2,200 - $2,400" },
+        { name: "CA - VAN NUYS / Burbank / North Hollywood", port: "LOS ANGELES, CA", price: "$2,000 - $2,200" },
+        { name: "CA - VALLEJO / Martinez", port: "LOS ANGELES, CA", price: "$2,300 - $2,500" },
+        { name: "CA - REDDING", port: "LOS ANGELES, CA", price: "$2,350 - $2,500" },
+
+        // UTAH (UT)
+        { name: "UT - SALT LAKE CITY", port: "LOS ANGELES, CA", price: "$2,208" },
+        { name: "UT - PROVO (Nephi)", port: "LOS ANGELES, CA", price: "$2,248" },
+        { name: "UT - UTAH (WOODS CROSS)", port: "LOS ANGELES, CA", price: "$2,243" },
+        { name: "UT - OGDEN (Farr West)", port: "LOS ANGELES, CA", price: "$2,198" },
+
+        // OKLAHOMA (OK)
+        { name: "OK - OKLAHOMA CITY", port: "HOUSTON, TX", price: "$1,554" },
+        { name: "OK - TULSA", port: "HOUSTON, TX", price: "$1,554" },
+        { name: "OK - Sapulpa (Manheim Tulsa)", port: "HOUSTON, TX", price: "$1,674" },
+
+        // OREGON (OR)
+        { name: "OR - PORTLAND / Portland North", port: "LOS ANGELES, CA", price: "$2,398" },
+        { name: "OR - WOOD VILLAGE", port: "LOS ANGELES, CA", price: "$2,268" },
+        { name: "OR - EUGENE", port: "LOS ANGELES, CA", price: "$2,393" },
+
+        // NEW YORK (NY)
+        { name: "NY - MONTICELLO", port: "NEW JERSEY, NJ", price: "$1,200" },
+        { name: "NY - SYRACUSE", port: "NEW JERSEY, NJ", price: "$1,240" },
+        { name: "NY - ALBANY / Schenectady", port: "NEW JERSEY, NJ", price: "$1,150" },
+        { name: "NY - NEWBURGH / Marlboro", port: "NEW JERSEY, NJ", price: "$1,125" },
+        { name: "NY - LONG ISLAND (Medford/Brookhaven)", port: "NEW JERSEY, NJ", price: "$1,140" },
+        { name: "NY - BUFFALO", port: "NEW JERSEY, NJ", price: "$1,350" },
+        { name: "NY - ROCHESTER", port: "NEW JERSEY, NJ", price: "$1,325" },
+
+        // OHIO (OH)
+        { name: "OH - COLUMBUS / Grove City", port: "NEW JERSEY, NJ", price: "$1,350" },
+        { name: "OH - CLEVELAND / Lorain", port: "NEW JERSEY, NJ", price: "$1,350" },
+        { name: "OH - AKRON-CANTON", port: "NEW JERSEY, NJ", price: "$1,400" },
+        { name: "OH - DAYTON / Cincinnati", port: "NEW JERSEY, NJ", price: "$1,350" },
+        { name: "OH - COLUMBUS / Grove City", port: "BALTIMORE, MD", price: "$1,654" },
+        { name: "OH - CLEVELAND", port: "BALTIMORE, MD", price: "$1,669" },
+
         // ILLINOIS (IL)
         { name: "IL - CHICAGO NORTH (Elgin)", port: "BALTIMORE, MD", price: "$1,729" },
         { name: "IL - CHICAGO WEST (Aurora)", port: "BALTIMORE, MD", price: "$1,729" },
         { name: "IL - WHEELING", port: "BALTIMORE, MD", price: "$1,704" },
         { name: "IL - PEORIA (PEKIN)", port: "BALTIMORE, MD", price: "$1,779" },
         { name: "IL - CHICAGO", port: "BALTIMORE, MD", price: "$1,704" },
-        { name: "IL - Westchester", port: "BALTIMORE, MD", price: "$1,754" },
-        { name: "IL - ST. LOUIS (Caseyville / Granite City)", port: "BALTIMORE, MD", price: "$1,729" },
-        { name: "IL - BARTLETT", port: "BALTIMORE, MD", price: "$1,654" },
-        { name: "IL - Matteson", port: "BALTIMORE, MD", price: "$1,804" },
-        { name: "IL - ST. LOUIS (GRANITE CITY)", port: "NEW JERSEY, NJ", price: "$1,475" },
-        { name: "IL - CHICAGO NORTH (Elgin)", port: "NEW JERSEY, NJ", price: "$1,425" },
-        { name: "IL - CHICAGO WEST (Aurora)", port: "NEW JERSEY, NJ", price: "$1,425" },
-
-        // HAWAII (HI)
-        { name: "HI - MAUI / MAUI", port: "LOS ANGELES, CA", price: "$4,898" },
-        { name: "HI - HONOLULU / Kapolei", port: "LOS ANGELES, CA", price: "$3,898" },
-        { name: "HI - HILO / TOW GUYS", port: "LOS ANGELES, CA", price: "$5,398" },
-        { name: "HI - HILO / DC TOW", port: "LOS ANGELES, CA", price: "$4,298" },
-        { name: "HI - HILO / COPART", port: "LOS ANGELES, CA", price: "$4,298" },
-        { name: "HI - KAUAI / KAUAI", port: "LOS ANGELES, CA", price: "$4,898" },
-        { name: "HI - KONA / BZ TRUCKING", port: "LOS ANGELES, CA", price: "$4,998" },
-        { name: "HI - HONOLULUSUB LOT / LIHUE", port: "LOS ANGELES, CA", price: "$4,898" },
-
-        // WISCONSIN (WI)
-        { name: "WI - MADISON (MADISON)", port: "NEW JERSEY, NJ", price: "$1,550" },
-        { name: "WI - MADISON SOUTH (McFarland)", port: "NEW JERSEY, NJ", price: "$1,550" },
-        { name: "WI - Cudahy (Cudahy)", port: "NEW JERSEY, NJ", price: "$1,550" },
-        { name: "WI - Milwaukee (Sussex / North / South)", port: "NEW JERSEY, NJ", price: "$1,550" },
-        { name: "WI - PORTAGE (PORTAGE)", port: "NEW JERSEY, NJ", price: "$1,500" },
-        { name: "WI - Appleton (Appleton)", port: "NEW JERSEY, NJ", price: "$1,550" },
-        { name: "WI - PORTAGE (PORTAGE)", port: "BALTIMORE, MD", price: "$1,804" },
-        { name: "WI - Appleton (Appleton)", port: "BALTIMORE, MD", price: "$1,804" },
-        { name: "WI - MILWAUKEE (North / South / Franklin)", port: "BALTIMORE, MD", price: "$1,854" },
-        { name: "WI - MADISON (MADISON / McFarland)", port: "BALTIMORE, MD", price: "$1,854" },
-        { name: "WI - Cudahy (Cudahy)", port: "BALTIMORE, MD", price: "$1,854" },
-
-        // WEST VIRGINIA (WV)
-        { name: "WV - SHADY SPRINGS", port: "NEW JERSEY, NJ", price: "$1,450" },
-        { name: "WV - CHARLESTON (Hurricane)", port: "NEW JERSEY, NJ", price: "$1,450" },
-        { name: "WV - BUCKHANNON", port: "NEW JERSEY, NJ", price: "$1,450" },
-        { name: "WV - SUNDANCE", port: "NEW JERSEY, NJ", price: "$1,900" },
-        { name: "WV - CASPER", port: "NEW JERSEY, NJ", price: "$2,000" },
-        { name: "WV - CHARLESTON (Hurricane)", port: "BALTIMORE, MD", price: "$1,749" },
-        { name: "WV - BUCKHANNON", port: "BALTIMORE, MD", price: "$1,669" },
-        { name: "WV - SUNDANCE", port: "BALTIMORE, MD", price: "$2,104" },
-        { name: "WV - SHADY SPRINGS", port: "BALTIMORE, MD", price: "$1,779" },
-
-        // WYOMING (WY)
-        { name: "WY - CASPER (Casper)", port: "LOS ANGELES, CA", price: "$3,173" },
-        { name: "WY - CASPER WEST", port: "LOS ANGELES, CA", price: "$3,173" },
-        { name: "WY - SUNDANCE (Sundance)", port: "LOS ANGELES, CA", price: "$3,173" },
-
-        // SOUTH DAKOTA (SD)
-        { name: "SD - SIOUX FALLS (LENNOX)", port: "HOUSTON, TX", price: "$2,424" },
-        { name: "SD - RAPID CITY", port: "HOUSTON, TX", price: "$2,424" },
-        { name: "SD - SIOUX FALLS (LENNOX)", port: "NEW JERSEY, NJ", price: "$2,150" },
-        { name: "SD - RAPID CITY", port: "NEW JERSEY, NJ", price: "$2,150" },
-        { name: "SD - SIOUX FALLS (LENNOX)", port: "BALTIMORE, MD", price: "$2,454" },
-        { name: "SD - RAPID CITY", port: "BALTIMORE, MD", price: "$2,454" },
-
-        // VIRGINIA (VA)
-        { name: "VA - Richmond (SANDSTON)", port: "NEW JERSEY, NJ", price: "$1,300" },
-        { name: "VA - Fredericksburg", port: "NEW JERSEY, NJ", price: "$1,250" },
-        { name: "VA - Danville (BEDFORD / Chatham)", port: "NEW JERSEY, NJ", price: "$1,300" },
-        { name: "VA - ROANOKE (MONTVALE)", port: "NEW JERSEY, NJ", price: "$1,350" },
-        { name: "VA - TIDEWATER (YORKTOWN)", port: "NEW JERSEY, NJ", price: "$1,250" },
-        { name: "VA - CHARLES CITY", port: "NEW JERSEY, NJ", price: "$1,250" },
-        { name: "VA - Suffolk", port: "NEW JERSEY, NJ", price: "$1,300" },
-        { name: "VA - Pulaski", port: "NEW JERSEY, NJ", price: "$1,300" },
-        { name: "VA - Hampton", port: "NEW JERSEY, NJ", price: "$1,275" },
-        { name: "VA - NORTHERN VIRGINIA", port: "NEW JERSEY, NJ", price: "$1,250" },
-        { name: "VA - RICHMOND EAST", port: "NEW JERSEY, NJ", price: "$1,300" },
-        { name: "VA - RUSTBURG", port: "NEW JERSEY, NJ", price: "$1,300" },
-        { name: "VA - ASHLAND", port: "NEW JERSEY, NJ", price: "$1,300" },
-        { name: "VA - SALEM", port: "NEW JERSEY, NJ", price: "$1,350" },
-        { name: "VA - Culpeper", port: "NEW JERSEY, NJ", price: "$1,250" },
-        { name: "VA - Harrisonburg", port: "NEW JERSEY, NJ", price: "$1,400" },
-        { name: "VA - Bristol", port: "NEW JERSEY, NJ", price: "$1,300" },
-        { name: "VA - KING GEORGE", port: "NEW JERSEY, NJ", price: "$1,300" },
-        { name: "VA - Suffolk", port: "BALTIMORE, MD", price: "$1,644" },
-        { name: "VA - ROANOKE", port: "BALTIMORE, MD", price: "$1,654" },
-        { name: "VA - RICHMOND EAST", port: "BALTIMORE, MD", price: "$1,544" },
-        { name: "VA - Richmond", port: "BALTIMORE, MD", price: "$1,544" },
-        { name: "VA - KING GEORGE", port: "BALTIMORE, MD", price: "$1,594" },
-
-        // VERMONT (VT)
-        { name: "VT - Rutland", port: "NEW JERSEY, NJ", price: "$1,445" },
-        { name: "VT - FAIR HAVEN", port: "NEW JERSEY, NJ", price: "$1,550" },
-        { name: "VT - ORLEANS", port: "NEW JERSEY, NJ", price: "$1,400" },
-        { name: "VT - BURLINGTON (ESSEX)", port: "NEW JERSEY, NJ", price: "$1,400" },
-
-        // WASHINGTON (WA)
-        { name: "WA - SEATTLE", port: "LOS ANGELES, CA", price: "$2,448" },
-        { name: "WA - NORTH SEATTLE", port: "LOS ANGELES, CA", price: "$2,398" },
-        { name: "WA - PASCO", port: "LOS ANGELES, CA", price: "$2,998" },
-        { name: "WA - Spanaway", port: "LOS ANGELES, CA", price: "$2,388" },
-        { name: "WA - VANCOUVER", port: "LOS ANGELES, CA", price: "$2,498" },
-        { name: "WA - SPOKANE", port: "LOS ANGELES, CA", price: "$2,698" },
-        { name: "WA - GRAHAM", port: "LOS ANGELES, CA", price: "$2,443" },
 
         // TEXAS (TX)
         { name: "TX - Waco", port: "HOUSTON, TX", price: "$1,459" },
-        { name: "TX - HOUSTON EAST", port: "HOUSTON, TX", price: "$1,324" },
-        { name: "TX - IAA Cat Houston", port: "HOUSTON, TX", price: "$1,394" },
-        { name: "TX - Odessa", port: "HOUSTON, TX", price: "$1,549" },
-        { name: "TX - Austin", port: "HOUSTON, TX", price: "$1,419" },
-        { name: "TX - Amarillo", port: "HOUSTON, TX", price: "$1,574" },
-        { name: "TX - Euless", port: "HOUSTON, TX", price: "$1,374" },
-        { name: "TX - McAllen", port: "HOUSTON, TX", price: "$1,419" },
-        { name: "TX - Houston North / South", port: "HOUSTON, TX", price: "$1,324" },
-        { name: "TX - Permian Basin", port: "HOUSTON, TX", price: "$1,544" },
-        { name: "TX - Donna", port: "HOUSTON, TX", price: "$1,419" },
-        { name: "TX - New Braunfels", port: "HOUSTON, TX", price: "$1,419" },
-        { name: "TX - Abilene", port: "HOUSTON, TX", price: "$1,539" },
-        { name: "TX - San Antonio", port: "HOUSTON, TX", price: "$1,414" },
-        { name: "TX - Fort Worth", port: "HOUSTON, TX", price: "$1,399" },
-        { name: "TX - Dallas", port: "HOUSTON, TX", price: "$1,349" },
-        { name: "TX - El Paso", port: "HOUSTON, TX", price: "$1,564" },
-        { name: "TX - Andrews", port: "HOUSTON, TX", price: "$1,574" },
-        { name: "TX - Longview", port: "HOUSTON, TX", price: "$1,404" },
-
-        // ALABAMA (AL)
-        { name: "AL - MOBILE SOUTH (THEODORE)", port: "SAVANNAH, GA", price: "$1,165" },
-        { name: "AL - Florence", port: "SAVANNAH, GA", price: "$1,375" },
-        { name: "AL - MONTGOMERY", port: "SAVANNAH, GA", price: "$1,165" },
-        { name: "AL - TANNER", port: "SAVANNAH, GA", price: "$1,165" },
-        { name: "AL - BIRMINGHAM (HUEYTOWN)", port: "SAVANNAH, GA", price: "$1,165" },
-        { name: "AL - HUNTSVILLE", port: "SAVANNAH, GA", price: "$1,165" },
-
-        // ARKANSAS (AR)
-        { name: "AR - LITTLE ROCK (North Little Rock)", port: "HOUSTON, TX", price: "$1,624" },
-        { name: "AR - Siloam Springs", port: "HOUSTON, TX", price: "$1,874" },
-        { name: "AR - LITTLE ROCK (Conway)", port: "HOUSTON, TX", price: "$1,574" },
-
-        // ARIZONA (AZ)
-        { name: "AZ - PHOENIX", port: "LOS ANGELES, CA", price: "$2,058" },
-        { name: "AZ - TUCSON", port: "LOS ANGELES, CA", price: "$2,143" },
-        { name: "AZ - TOLLESON", port: "LOS ANGELES, CA", price: "$2,073" },
-        { name: "AZ - CHANDLER", port: "LOS ANGELES, CA", price: "$2,083" },
-
-        // COLORADO (CO)
-        { name: "CO - Denver East", port: "HOUSTON, TX", price: "$1,824" },
-        { name: "CO - Denver (Brighton)", port: "HOUSTON, TX", price: "$1,824" },
-        { name: "CO - DENVER CENTRAL", port: "HOUSTON, TX", price: "$1,824" },
-        { name: "CO - Denver (Brighton)", port: "LOS ANGELES, CA", price: "$2,313" },
-        { name: "CO - Colorado Springs", port: "LOS ANGELES, CA", price: "$2,398" },
-
-        // CONNECTICUT (CT)
-        { name: "CT - HARTFORD SPRINGFIELD (East Granby)", port: "NEW JERSEY, NJ", price: "$1,150" },
-        { name: "CT - HAMDEN CT", port: "NEW JERSEY, NJ", price: "$1,150" },
-
-        // DELAWARE (DE)
-        { name: "DE - NEW CASTLE", port: "NEW JERSEY, NJ", price: "$1,175" },
-
-        // FLORIDA (FL)
-        { name: "FL - TAMPA SOUTH (Thonotosassa)", port: "SAVANNAH, GA", price: "$1,125" },
-        { name: "FL - FORT PIERCE", port: "SAVANNAH, GA", price: "$1,125" },
-        { name: "FL - Fort Myers", port: "SAVANNAH, GA", price: "$1,325" },
-        { name: "FL - FORT LAUDERDALE", port: "SAVANNAH, GA", price: "$1,175" },
-        { name: "FL - DOVER", port: "SAVANNAH, GA", price: "$1,075" },
-        { name: "FL - MIAMI SOUTH / NORTH", port: "SAVANNAH, GA", price: "$1,145" },
-
-        // GEORGIA (GA)
-        { name: "GA - Atlanta East (Loganville)", port: "SAVANNAH, GA", price: "$1,075" },
-        { name: "GA - Atlanta North (Gainesville)", port: "SAVANNAH, GA", price: "$1,085" },
-        { name: "GA - Atlanta South (Cartersville)", port: "SAVANNAH, GA", price: "$1,085" },
-        { name: "GA - AUGUSTA", port: "SAVANNAH, GA", price: "$1,025" },
-        { name: "GA - SAVANNAH (Rincon)", port: "SAVANNAH, GA", price: "$975" },
-
-        // IDAHO (ID)
-        { name: "ID - IDAHO (MERIDIAN)", port: "LOS ANGELES, CA", price: "$2,228" },
-        { name: "ID - IDAHO (BOISE)", port: "LOS ANGELES, CA", price: "$2,378" },
-
-        // PENNSYLVANIA (PA)
-        { name: "PA - PHILADELPHIA (Manheim Philadelphia)", port: "BALTIMORE, MD", price: "$1,479" },
-        { name: "PA - PHILADELPHIA (Grantville)", port: "BALTIMORE, MD", price: "$1,454" },
-        { name: "PA - ALTOONA (EBENSBURG)", port: "BALTIMORE, MD", price: "$1,579" },
-        { name: "PA - ALTOONA (IAA) (EAST FREEDOM)", port: "BALTIMORE, MD", price: "$1,579" },
-        { name: "PA - YORK SPRINGS", port: "BALTIMORE, MD", price: "$1,469" },
-        { name: "PA - BRIDGEPORT", port: "BALTIMORE, MD", price: "$1,444" },
-        { name: "PA - HARRISBURG (GRANTVILLE)", port: "BALTIMORE, MD", price: "$1,554" },
-        { name: "PA - PITTSBURGH NORTH (Ellwood City)", port: "BALTIMORE, MD", price: "$1,629" },
-        { name: "PA - YORK HAVEN", port: "BALTIMORE, MD", price: "$1,469" },
-        { name: "PA - PITTSBURGH (Uniontown ACV)", port: "BALTIMORE, MD", price: "$1,804" },
-        { name: "PA - PITTSBURG EAST (ADAMSBURG)", port: "BALTIMORE, MD", price: "$1,594" },
-        { name: "PA - SCRANTON (DURYEA)", port: "BALTIMORE, MD", price: "$1,604" },
-        { name: "PA - SCRANTON (Pittston)", port: "BALTIMORE, MD", price: "$1,474" },
-        { name: "PA - ADAMSBURG", port: "BALTIMORE, MD", price: "$1,614" },
-        { name: "PA - PHILADELPHIA (Conshohocken)", port: "BALTIMORE, MD", price: "$1,529" },
-        { name: "PA - PHILADELPHIA EAST (Adamsburg)", port: "BALTIMORE, MD", price: "$1,594" },
-        { name: "PA - COOPERSBURG", port: "BALTIMORE, MD", price: "$1,504" },
-        { name: "PA - ERIE (GARLAND)", port: "BALTIMORE, MD", price: "$1,679" },
-        { name: "PA - Pittsburgh-North (Gibsonia)", port: "BALTIMORE, MD", price: "$1,654" },
-        { name: "PA - PITTSBURGH WEST (West Mifflin)", port: "BALTIMORE, MD", price: "$1,629" },
-        { name: "PA - Uniontown (Uniontown act)", port: "BALTIMORE, MD", price: "$1,854" },
-        { name: "PA - PITTSBURG SOUTH (WEST MIFFLIN)", port: "BALTIMORE, MD", price: "$1,629" },
-        { name: "PA - PITTSBURGH (Aliquippa)", port: "BALTIMORE, MD", price: "$1,629" },
-        { name: "PA - PHILADELPHIA (Pennsburg)", port: "BALTIMORE, MD", price: "$1,454" },
-        { name: "PA - PHILADELPHIA EAST (CHALFONT)", port: "BALTIMORE, MD", price: "$1,439" },
-        { name: "PA - PITTSBURGH South (West Mifflin)", port: "BALTIMORE, MD", price: "$1,629" },
-        { name: "PA - PHILADELPHIA (Malvern)", port: "BALTIMORE, MD", price: "$1,504" },
-        { name: "PA - Pennsylvania (Manheim Pennsylvania)", port: "BALTIMORE, MD", price: "$1,454" },
-        { name: "PA - PHILADELPHIA (East Sub lot)", port: "BALTIMORE, MD", price: "$1,434" },
-        { name: "PA - CHAMBERSBURG", port: "BALTIMORE, MD", price: "$1,554" },
-
-        // RHODE ISLAND (RI)
-        { name: "RI - EXETER", port: "NEW JERSEY, NJ", price: "$1,250" },
-        { name: "RI - PROVIDENCE (EAST PROVIDENCE)", port: "NEW JERSEY, NJ", price: "$1,250" },
-
-        // SOUTH CAROLINA (SC)
-        { name: "SC - Greenville (Simpsonville)", port: "SAVANNAH, GA", price: "$1,095" },
-        { name: "SC - Lexington", port: "SAVANNAH, GA", price: "$1,040" },
-        { name: "SC - Spartanburg", port: "SAVANNAH, GA", price: "$1,100" },
-        { name: "SC - Columbia (Gaston)", port: "SAVANNAH, GA", price: "$1,050" },
-        { name: "SC - Charleston/North (Charleston Ravenel)", port: "SAVANNAH, GA", price: "$1,040" },
-        { name: "SC - Darlington", port: "SAVANNAH, GA", price: "$1,065" },
-        { name: "SC - Darlington (Darlington Manheim)", port: "SAVANNAH, GA", price: "$1,125" },
-        { name: "SC - Harleysville", port: "SAVANNAH, GA", price: "$1,040" },
-        { name: "SC - Greer", port: "SAVANNAH, GA", price: "$1,050" },
-
-        // TENNESSEE (TN)
-        { name: "TN - NASHVILLE (OLD HICKORY)", port: "SAVANNAH, GA", price: "$1,375" },
-        { name: "TN - NASHVILLE (LEBANON)", port: "SAVANNAH, GA", price: "$1,225" },
-        { name: "TN - NASHVILLE (MANHEIM, Mt. Juliet)", port: "SAVANNAH, GA", price: "$1,375" },
-        { name: "TN - MADISONVILLE", port: "SAVANNAH, GA", price: "$1,190" },
-        { name: "TN - KNOXVILLE (MADISONVILLE)", port: "SAVANNAH, GA", price: "$1,190" },
-        { name: "TN - CHATTANOOGA", port: "SAVANNAH, GA", price: "$1,190" },
-        { name: "TN - MEMPHIS (Millington)", port: "SAVANNAH, GA", price: "$1,290" },
-        { name: "TN - Tullahoma (MANHEIM, Tullahoma)", port: "SAVANNAH, GA", price: "$1,425" }
+        { name: "TX - HOUSTON EAST / North / South", port: "HOUSTON, TX", price: "$1,324" },
+        { name: "TX - Dallas / Fort Worth", port: "HOUSTON, TX", price: "$1,349" },
+        { name: "TX - San Antonio / Austin", port: "HOUSTON, TX", price: "$1,414" }
     ];
 
     function renderTable(data) {
@@ -556,13 +387,12 @@
         }
 
         let searchTerm = rawInput
+            .replace(/ئەلاسکا|ئەلاسكا/g, "alaska")
+            .replace(/کالیفۆرنیا|کالیفورنیا/g, "ca")
             .replace(/چیکاهۆ|شیکاگو|چیکاگو/g, "chicago")
             .replace(/تێکساس/g, "tx")
-            .replace(/جۆرجیا/g, "ga")
-            .replace(/فلۆریدا/g, "fl")
-            .replace(/پێنسلڤانیا|پێنسلڤێنیا/g, "pa")
-            .replace(/تێنسی/g, "tn")
-            .replace(/مەیامی/g, "miami");
+            .replace(/نیویۆرک|نیو یۆرک/g, "ny")
+            .replace(/ئۆهایۆ/g, "oh");
 
         const filtered = shippingData.filter(item => {
             const cityName = item.name.toLowerCase();
