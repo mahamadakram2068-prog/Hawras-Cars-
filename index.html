@@ -247,7 +247,7 @@
 
     <div class="search-container">
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="🔍 ناو یان کورتکراوەی شار بپشکنە (نموونە: Los Angeles, CA, NY, Alaska)..." oninput="filterData()">
+            <input type="text" id="searchInput" placeholder="🔍 ناو یان کورتکراوەی شار بپشکنە (نموونە: North California, Concord, Los Angeles, NY, TX)..." oninput="filterData()">
         </div>
     </div>
 
@@ -288,18 +288,30 @@
         // ALASKA (AK)
         { name: "AK - ALASKA (Anchorage / Fairbanks)", port: "PACIFIC PORT", price: "~ $5,000" },
 
-        // CALIFORNIA (CA)
+        // NORTHERN CALIFORNIA (NORTH CA)
+        { name: "CA - NORTH CALIFORNIA (Northern CA / North California)", port: "LOS ANGELES, CA", price: "$2,200 - $2,500" },
+        { name: "CA - CONCORD", port: "LOS ANGELES, CA", price: "$2,250 - $2,450" },
+        { name: "CA - SACRAMENTO / South Sacramento", port: "LOS ANGELES, CA", price: "$2,200 - $2,400" },
+        { name: "CA - SACRAMENTO NORTH", port: "LOS ANGELES, CA", price: "$2,250" },
+        { name: "CA - SAN JOSE / Fremont / San Martin", port: "LOS ANGELES, CA", price: "$2,250 - $2,450" },
+        { name: "CA - VALLEJO / Martinez / Oakland", port: "LOS ANGELES, CA", price: "$2,300 - $2,500" },
+        { name: "CA - REDDING / Northern Coast", port: "LOS ANGELES, CA", price: "$2,350 - $2,500" },
+        { name: "CA - FRESNO / Central North", port: "LOS ANGELES, CA", price: "$2,200 - $2,400" },
+        { name: "CA - HAYWARD", port: "LOS ANGELES, CA", price: "$2,300" },
+
+        // SOUTHERN CALIFORNIA (SOUTH CA)
         { name: "CA - LOS ANGELES / Gardena / Carson", port: "LOS ANGELES, CA", price: "$2,000 - $2,200" },
         { name: "CA - SAN DIEGO", port: "LOS ANGELES, CA", price: "$2,100 - $2,300" },
-        { name: "CA - SACRAMENTO / South Sacramento", port: "LOS ANGELES, CA", price: "$2,200 - $2,400" },
         { name: "CA - RIVERSIDE / Mentone", port: "LOS ANGELES, CA", price: "$2,000 - $2,250" },
         { name: "CA - FONTANA / Jurupa Valley", port: "LOS ANGELES, CA", price: "$2,000 - $2,250" },
-        { name: "CA - SAN JOSE / Fremont / San Martin", port: "LOS ANGELES, CA", price: "$2,250 - $2,450" },
         { name: "CA - BAKERSFIELD", port: "LOS ANGELES, CA", price: "$2,150 - $2,350" },
-        { name: "CA - FRESNO", port: "LOS ANGELES, CA", price: "$2,200 - $2,400" },
         { name: "CA - VAN NUYS / Burbank / North Hollywood", port: "LOS ANGELES, CA", price: "$2,000 - $2,200" },
-        { name: "CA - VALLEJO / Martinez", port: "LOS ANGELES, CA", price: "$2,300 - $2,500" },
-        { name: "CA - REDDING", port: "LOS ANGELES, CA", price: "$2,350 - $2,500" },
+        { name: "CA - RANCHO CUCAMONGA", port: "LOS ANGELES, CA", price: "$2,050" },
+
+        // NORTH CAROLINA (NC)
+        { name: "NC - CONCORD / Charlotte", port: "SAVANNAH, GA", price: "$1,350" },
+        { name: "NC - RALEIGH / Durham", port: "SAVANNAH, GA", price: "$1,380" },
+        { name: "NC - GREENSBORO", port: "SAVANNAH, GA", price: "$1,360" },
 
         // UTAH (UT)
         { name: "UT - SALT LAKE CITY", port: "LOS ANGELES, CA", price: "$2,208" },
@@ -345,7 +357,9 @@
         { name: "TX - Waco", port: "HOUSTON, TX", price: "$1,459" },
         { name: "TX - HOUSTON EAST / North / South", port: "HOUSTON, TX", price: "$1,324" },
         { name: "TX - Dallas / Fort Worth", port: "HOUSTON, TX", price: "$1,349" },
-        { name: "TX - San Antonio / Austin", port: "HOUSTON, TX", price: "$1,414" }
+        { name: "TX - San Antonio / Austin", port: "HOUSTON, TX", price: "$1,414" },
+        { name: "TX - MCALLEN / HARLINGEN", port: "HOUSTON, TX", price: "$1,480" },
+        { name: "TX - EL PASO", port: "HOUSTON, TX", price: "$1,650" }
     ];
 
     function renderTable(data) {
@@ -387,6 +401,8 @@
         }
 
         let searchTerm = rawInput
+            .replace(/کالیفۆرنیای باکوور|کالیفۆرنیای باکور|باكوری كالیفۆرنیا|باکووری کالیفۆرنیا/g, "north california")
+            .replace(/کۆنکۆرد|کۆنکورد/g, "concord")
             .replace(/ئەلاسکا|ئەلاسكا/g, "alaska")
             .replace(/کالیفۆرنیا|کالیفورنیا/g, "ca")
             .replace(/چیکاهۆ|شیکاگو|چیکاگو/g, "chicago")
