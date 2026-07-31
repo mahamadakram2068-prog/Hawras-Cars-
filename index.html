@@ -1,3 +1,288 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hawras Cars - نرخەکانی نەقڵ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #071728;
+            --card-bg: #0d233a;
+            --accent-yellow: #f5b000;
+            --accent-hover: #ffd000;
+            --text-white: #ffffff;
+            --text-dim: #94a3b8;
+            --border-color: #1e3a5f;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            padding: 20px 15px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .logo-box {
+            margin: 0 auto 15px;
+            max-width: 260px;
+        }
+
+        .logo-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(245, 176, 0, 0.15);
+        }
+
+        h1 {
+            color: var(--accent-yellow);
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .sub-title {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-top: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-number {
+            display: inline-block;
+            margin-top: 10px;
+            background: rgba(245, 176, 0, 0.1);
+            color: var(--accent-yellow);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            border: 1px solid var(--accent-yellow);
+            direction: ltr;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1.1rem;
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 14px;
+            color: var(--text-white);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 15px rgba(245, 176, 0, 0.2);
+        }
+
+        .table-responsive {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: none;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+        }
+
+        th {
+            background-color: rgba(245, 176, 0, 0.15);
+            color: var(--accent-yellow);
+            padding: 16px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.98rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .port-name {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .price-tag {
+            color: var(--accent-yellow);
+            font-weight: 900;
+            font-size: 1.1rem;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        .no-result {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-dim);
+            background-color: var(--card-bg);
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            display: none;
+            margin-bottom: 25px;
+        }
+
+        .terms-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .terms-card ul {
+            list-style-type: none;
+        }
+
+        .terms-card li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+
+        .terms-card li:last-child {
+            margin-bottom: 0;
+        }
+
+        .terms-card li::before {
+            content: "•";
+            color: var(--accent-yellow);
+            font-size: 1.5rem;
+            position: absolute;
+            right: 0;
+            top: -3px;
+        }
+
+        .terms-footer {
+            text-align: center;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--accent-yellow);
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            th, td {
+                padding: 12px 10px;
+                font-size: 0.88rem;
+            }
+
+            .price-tag {
+                font-size: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .terms-card li {
+                font-size: 0.88rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo-box">
+            <img src="logo.jpg" alt="Hawras Cars Logo" id="main-logo" onerror="this.style.display='none'">
+        </div>
+        <h1>HAWRAS CARS</h1>
+        <div class="sub-title">AUCTION USA - CANADA | IAAI & COPART</div>
+        <div class="contact-number">📞 0771 011 3663</div>
+    </header>
+
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 ناو یان کورتکراوەی شار بپشکنە (نموونە: Chicago, PA, Houston)..." oninput="filterData()">
+        </div>
+    </div>
+
+    <div id="tableContainer" class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>شار / لق (Branch & City)</th>
+                    <th>بەندەری مەقسەد (Destination)</th>
+                    <th>کۆی نرخ (Total Cost)</th>
+                </tr>
+            </thead>
+            <tbody id="shippingTable">
+            </tbody>
+        </table>
+    </div>
+
+    <div id="noResults" class="no-result">
+        هیچ ئەنجامێک بەم ناوانە نەدۆزرایەوە!
+    </div>
+
+    <div class="terms-card">
+        <ul>
+            <li>کۆمپانیای هەوراس بەرپرس نیە لە هەموو پێشهات و ئەگەرێک لە گران بوونی کرێی گواستنەوە لە بوونی شەڕ و درەنگ کەوتنیان.</li>
+            <li>کۆمپانیا بەرپرس نیە لە هەر زەرەر و زیانێک بەر ئۆتۆمبێل بکەوێت بە هۆکار و کارەساتی سروشتی.</li>
+            <li>شێوازی پارەدان بە شێوەی کاشە واتە ئەگەر ئەمڕۆ ئۆتۆمبێل بکڕیت بۆ ڕۆژی دواتر دەبێت پارە واصل بکرێت.</li>
+            <li>ئۆتۆمبێلی SUV هیچ بڕە پارەیەکی زیادەی ناچێتە سەر جگە لەو ئۆتۆمبێلانەی کە قەبارەیان زۆر گەورەیە.</li>
+            <li>ئەم لیستی نەقڵە بۆ مێرسینە نرخەکان بە دۆلاری ئه‌مریکین.</li>
+        </ul>
+        <div class="terms-footer">
+            لەگەڵ ڕێزدا.
+        </div>
+    </div>
+</div>
+
 <script>
     const shippingData = [
         // ILLINOIS (IL)
@@ -287,3 +572,6 @@
         renderTable(filtered);
     }
 </script>
+
+</body>
+</html>
