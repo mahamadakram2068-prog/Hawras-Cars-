@@ -247,7 +247,7 @@
 
     <div class="search-container">
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="🔍 ناو یان کورتکراوەی شار یان ویلایەت بپشکنە (نموونە: CA, NY, Concord, TX, Chicago)..." oninput="filterData()">
+            <input type="text" id="searchInput" placeholder="🔍 ناو یان کورتکراوەی شار یان ویلایەت بپشکنە (نموونە: NJ, Newark, California, Concord, TX)..." oninput="filterData()">
         </div>
     </div>
 
@@ -285,79 +285,88 @@
 
 <script>
     const shippingData = [
-        // ALASKA (AK)
-        { name: "AK - ALASKA (Anchorage / Fairbanks)", port: "PACIFIC PORT", price: "~ $5,000" },
+        // NEW JERSEY (NJ) - هەموو لق و شارەکانی نیوجێرسی
+        { name: "NJ - NEW JERSEY (Port Newark / Elizabeth)", port: "NEW JERSEY, NJ", price: "$950 - $1,050", keys: "nj new jersey newark elizabeth port" },
+        { name: "NJ - NEWARK / Jersey City", port: "NEW JERSEY, NJ", price: "$950 - $1,100", keys: "nj new jersey newark jersey city" },
+        { name: "NJ - TRENTON / Robbinsville", port: "NEW JERSEY, NJ", price: "$1,000 - $1,150", keys: "nj new jersey trenton robbinsville" },
+        { name: "NJ - CAMDEN / Glassboro", port: "NEW JERSEY, NJ", price: "$1,050 - $1,200", keys: "nj new jersey camden glassboro" },
+        { name: "NJ - TINTON FALLS / Central NJ", port: "NEW JERSEY, NJ", price: "$1,000 - $1,150", keys: "nj new jersey tinton falls" },
+        { name: "NJ - EDISON / Woodbridge", port: "NEW JERSEY, NJ", price: "$980 - $1,080", keys: "nj new jersey edison woodbridge" },
+        { name: "NJ - BAYONNE / Jersey Shore", port: "NEW JERSEY, NJ", price: "$960 - $1,060", keys: "nj new jersey bayonne" },
 
-        // CALIFORNIA (CA) - (ئەوانەی پێشتر بەتاڵ بوون نرخەکەیان بوە بە $2,000 - $2,500)
-        { name: "CA - NORTH CALIFORNIA (Northern CA / ALL BRANCHES)", port: "LOS ANGELES, CA", price: "$2,000 - $2,500" },
-        { name: "CA - CONCORD", port: "LOS ANGELES, CA", price: "$2,000 - $2,500" },
-        { name: "CA - SACRAMENTO / South Sacramento", port: "LOS ANGELES, CA", price: "$2,000 - $2,500" },
-        { name: "CA - SACRAMENTO NORTH", port: "LOS ANGELES, CA", price: "$2,000 - $2,500" },
-        { name: "CA - SAN JOSE / Fremont / San Martin", port: "LOS ANGELES, CA", price: "$2,000 - $2,500" },
-        { name: "CA - VALLEJO / Martinez / Oakland", port: "LOS ANGELES, CA", price: "$2,000 - $2,500" },
-        { name: "CA - REDDING / Northern Coast", port: "LOS ANGELES, CA", price: "$2,000 - $2,500" },
-        { name: "CA - FRESNO / Central North", port: "LOS ANGELES, CA", price: "$2,000 - $2,500" },
-        { name: "CA - HAYWARD", port: "LOS ANGELES, CA", price: "$2,000 - $2,500" },
-        { name: "CA - LOS ANGELES / Gardena / Carson", port: "LOS ANGELES, CA", price: "$2,000 - $2,200" },
-        { name: "CA - SAN DIEGO", port: "LOS ANGELES, CA", price: "$2,100 - $2,300" },
-        { name: "CA - RIVERSIDE / Mentone", port: "LOS ANGELES, CA", price: "$2,000 - $2,250" },
-        { name: "CA - FONTANA / Jurupa Valley", port: "LOS ANGELES, CA", price: "$2,000 - $2,250" },
-        { name: "CA - BAKERSFIELD", port: "LOS ANGELES, CA", price: "$2,150 - $2,350" },
-        { name: "CA - VAN NUYS / Burbank / North Hollywood", port: "LOS ANGELES, CA", price: "$2,000 - $2,200" },
-        { name: "CA - RANCHO CUCAMONGA", port: "LOS ANGELES, CA", price: "$2,000 - $2,500" },
+        // ALASKA (AK)
+        { name: "AK - ALASKA (Anchorage / Fairbanks)", port: "PACIFIC PORT", price: "~ $5,000", keys: "ak alaska anchorage fairbanks" },
+
+        // CALIFORNIA (CA)
+        { name: "CA - NORTH CALIFORNIA (Northern CA / ALL BRANCHES)", port: "LOS ANGELES, CA", price: "$2,000 - $2,500", keys: "ca california north california north ca" },
+        { name: "CA - CONCORD", port: "LOS ANGELES, CA", price: "$2,000 - $2,500", keys: "ca california concord" },
+        { name: "CA - SACRAMENTO / South Sacramento", port: "LOS ANGELES, CA", price: "$2,000 - $2,500", keys: "ca california sacramento" },
+        { name: "CA - SACRAMENTO NORTH", port: "LOS ANGELES, CA", price: "$2,000 - $2,500", keys: "ca california sacramento north" },
+        { name: "CA - SAN JOSE / Fremont / San Martin", port: "LOS ANGELES, CA", price: "$2,000 - $2,500", keys: "ca california san jose fremont san martin" },
+        { name: "CA - VALLEJO / Martinez / Oakland", port: "LOS ANGELES, CA", price: "$2,000 - $2,500", keys: "ca california vallejo martinez oakland" },
+        { name: "CA - REDDING / Northern Coast", port: "LOS ANGELES, CA", price: "$2,000 - $2,500", keys: "ca california redding" },
+        { name: "CA - FRESNO / Central North", port: "LOS ANGELES, CA", price: "$2,000 - $2,500", keys: "ca california fresno" },
+        { name: "CA - HAYWARD", port: "LOS ANGELES, CA", price: "$2,000 - $2,500", keys: "ca california hayward" },
+        { name: "CA - LOS ANGELES / Gardena / Carson", port: "LOS ANGELES, CA", price: "$2,000 - $2,200", keys: "ca california los angeles la gardena carson" },
+        { name: "CA - SAN DIEGO", port: "LOS ANGELES, CA", price: "$2,100 - $2,300", keys: "ca california san diego" },
+        { name: "CA - RIVERSIDE / Mentone", port: "LOS ANGELES, CA", price: "$2,000 - $2,250", keys: "ca california riverside mentone" },
+        { name: "CA - FONTANA / Jurupa Valley", port: "LOS ANGELES, CA", price: "$2,000 - $2,250", keys: "ca california fontana jurupa valley" },
+        { name: "CA - BAKERSFIELD", port: "LOS ANGELES, CA", price: "$2,150 - $2,350", keys: "ca california bakersfield" },
+        { name: "CA - VAN NUYS / Burbank / North Hollywood", port: "LOS ANGELES, CA", price: "$2,000 - $2,200", keys: "ca california van nuys burbank hollywood" },
+        { name: "CA - RANCHO CUCAMONGA", port: "LOS ANGELES, CA", price: "$2,000 - $2,500", keys: "ca california rancho cucamonga" },
 
         // NORTH CAROLINA (NC)
-        { name: "NC - CONCORD / Charlotte", port: "SAVANNAH, GA", price: "$1,350" },
-        { name: "NC - RALEIGH / Durham", port: "SAVANNAH, GA", price: "$1,380" },
-        { name: "NC - GREENSBORO", port: "SAVANNAH, GA", price: "$1,360" },
+        { name: "NC - CONCORD / Charlotte", port: "SAVANNAH, GA", price: "$1,350", keys: "nc north carolina concord charlotte" },
+        { name: "NC - RALEIGH / Durham", port: "SAVANNAH, GA", price: "$1,380", keys: "nc north carolina raleigh durham" },
+        { name: "NC - GREENSBORO", port: "SAVANNAH, GA", price: "$1,360", keys: "nc north carolina greensboro" },
 
         // UTAH (UT)
-        { name: "UT - SALT LAKE CITY", port: "LOS ANGELES, CA", price: "$2,208" },
-        { name: "UT - PROVO (Nephi)", port: "LOS ANGELES, CA", price: "$2,248" },
-        { name: "UT - UTAH (WOODS CROSS)", port: "LOS ANGELES, CA", price: "$2,243" },
-        { name: "UT - OGDEN (Farr West)", port: "LOS ANGELES, CA", price: "$2,198" },
+        { name: "UT - SALT LAKE CITY", port: "LOS ANGELES, CA", price: "$2,208", keys: "ut utah salt lake city slc" },
+        { name: "UT - PROVO (Nephi)", port: "LOS ANGELES, CA", price: "$2,248", keys: "ut utah provo nephi" },
+        { name: "UT - UTAH (WOODS CROSS)", port: "LOS ANGELES, CA", price: "$2,243", keys: "ut utah woods cross" },
+        { name: "UT - OGDEN (Farr West)", port: "LOS ANGELES, CA", price: "$2,198", keys: "ut utah ogden farr west" },
 
         // OKLAHOMA (OK)
-        { name: "OK - OKLAHOMA CITY", port: "HOUSTON, TX", price: "$1,554" },
-        { name: "OK - TULSA", port: "HOUSTON, TX", price: "$1,554" },
-        { name: "OK - Sapulpa (Manheim Tulsa)", port: "HOUSTON, TX", price: "$1,674" },
+        { name: "OK - OKLAHOMA CITY", port: "HOUSTON, TX", price: "$1,554", keys: "ok oklahoma city okc" },
+        { name: "OK - TULSA", port: "HOUSTON, TX", price: "$1,554", keys: "ok oklahoma tulsa" },
+        { name: "OK - Sapulpa (Manheim Tulsa)", port: "HOUSTON, TX", price: "$1,674", keys: "ok oklahoma sapulpa" },
 
         // OREGON (OR)
-        { name: "OR - PORTLAND / Portland North", port: "LOS ANGELES, CA", price: "$2,398" },
-        { name: "OR - WOOD VILLAGE", port: "LOS ANGELES, CA", price: "$2,268" },
-        { name: "OR - EUGENE", port: "LOS ANGELES, CA", price: "$2,393" },
+        { name: "OR - PORTLAND / Portland North", port: "LOS ANGELES, CA", price: "$2,398", keys: "or oregon portland" },
+        { name: "OR - WOOD VILLAGE", port: "LOS ANGELES, CA", price: "$2,268", keys: "or oregon wood village" },
+        { name: "OR - EUGENE", port: "LOS ANGELES, CA", price: "$2,393", keys: "or oregon eugene" },
 
         // NEW YORK (NY)
-        { name: "NY - MONTICELLO", port: "NEW JERSEY, NJ", price: "$1,200" },
-        { name: "NY - SYRACUSE", port: "NEW JERSEY, NJ", price: "$1,240" },
-        { name: "NY - ALBANY / Schenectady", port: "NEW JERSEY, NJ", price: "$1,150" },
-        { name: "NY - NEWBURGH / Marlboro", port: "NEW JERSEY, NJ", price: "$1,125" },
-        { name: "NY - LONG ISLAND (Medford/Brookhaven)", port: "NEW JERSEY, NJ", price: "$1,140" },
-        { name: "NY - BUFFALO", port: "NEW JERSEY, NJ", price: "$1,350" },
-        { name: "NY - ROCHESTER", port: "NEW JERSEY, NJ", price: "$1,325" },
+        { name: "NY - MONTICELLO", port: "NEW JERSEY, NJ", price: "$1,200", keys: "ny new york monticello" },
+        { name: "NY - SYRACUSE", port: "NEW JERSEY, NJ", price: "$1,240", keys: "ny new york syracuse" },
+        { name: "NY - ALBANY / Schenectady", port: "NEW JERSEY, NJ", price: "$1,150", keys: "ny new york albany schenectady" },
+        { name: "NY - NEWBURGH / Marlboro", port: "NEW JERSEY, NJ", price: "$1,125", keys: "ny new york newburgh marlboro" },
+        { name: "NY - LONG ISLAND (Medford/Brookhaven)", port: "NEW JERSEY, NJ", price: "$1,140", keys: "ny new york long island medford brookhaven" },
+        { name: "NY - BUFFALO", port: "NEW JERSEY, NJ", price: "$1,350", keys: "ny new york buffalo" },
+        { name: "NY - ROCHESTER", port: "NEW JERSEY, NJ", price: "$1,325", keys: "ny new york rochester" },
 
         // OHIO (OH)
-        { name: "OH - COLUMBUS / Grove City", port: "NEW JERSEY, NJ", price: "$1,350" },
-        { name: "OH - CLEVELAND / Lorain", port: "NEW JERSEY, NJ", price: "$1,350" },
-        { name: "OH - AKRON-CANTON", port: "NEW JERSEY, NJ", price: "$1,400" },
-        { name: "OH - DAYTON / Cincinnati", port: "NEW JERSEY, NJ", price: "$1,350" },
-        { name: "OH - COLUMBUS / Grove City", port: "BALTIMORE, MD", price: "$1,654" },
-        { name: "OH - CLEVELAND", port: "BALTIMORE, MD", price: "$1,669" },
+        { name: "OH - COLUMBUS / Grove City", port: "NEW JERSEY, NJ", price: "$1,350", keys: "oh ohio columbus grove city" },
+        { name: "OH - CLEVELAND / Lorain", port: "NEW JERSEY, NJ", price: "$1,350", keys: "oh ohio cleveland lorain" },
+        { name: "OH - AKRON-CANTON", port: "NEW JERSEY, NJ", price: "$1,400", keys: "oh ohio akron canton" },
+        { name: "OH - DAYTON / Cincinnati", port: "NEW JERSEY, NJ", price: "$1,350", keys: "oh ohio dayton cincinnati" },
+        { name: "OH - COLUMBUS / Grove City", port: "BALTIMORE, MD", price: "$1,654", keys: "oh ohio columbus baltimore" },
+        { name: "OH - CLEVELAND", port: "BALTIMORE, MD", price: "$1,669", keys: "oh ohio cleveland baltimore" },
 
         // ILLINOIS (IL)
-        { name: "IL - CHICAGO NORTH (Elgin)", port: "BALTIMORE, MD", price: "$1,729" },
-        { name: "IL - CHICAGO WEST (Aurora)", port: "BALTIMORE, MD", price: "$1,729" },
-        { name: "IL - WHEELING", port: "BALTIMORE, MD", price: "$1,704" },
-        { name: "IL - PEORIA (PEKIN)", port: "BALTIMORE, MD", price: "$1,779" },
-        { name: "IL - CHICAGO", port: "BALTIMORE, MD", price: "$1,704" },
+        { name: "IL - CHICAGO NORTH (Elgin)", port: "BALTIMORE, MD", price: "$1,729", keys: "il illinois chicago elgin north" },
+        { name: "IL - CHICAGO WEST (Aurora)", port: "BALTIMORE, MD", price: "$1,729", keys: "il illinois chicago aurora west" },
+        { name: "IL - WHEELING", port: "BALTIMORE, MD", price: "$1,704", keys: "il illinois wheeling chicago" },
+        { name: "IL - PEORIA (PEKIN)", port: "BALTIMORE, MD", price: "$1,779", keys: "il illinois peoria pekin" },
+        { name: "IL - CHICAGO", port: "BALTIMORE, MD", price: "$1,704", keys: "il illinois chicago" },
 
         // TEXAS (TX)
-        { name: "TX - Waco", port: "HOUSTON, TX", price: "$1,459" },
-        { name: "TX - HOUSTON EAST / North / South", port: "HOUSTON, TX", price: "$1,324" },
-        { name: "TX - Dallas / Fort Worth", port: "HOUSTON, TX", price: "$1,349" },
-        { name: "TX - San Antonio / Austin", port: "HOUSTON, TX", price: "$1,414" },
-        { name: "TX - MCALLEN / HARLINGEN", port: "HOUSTON, TX", price: "$1,480" },
-        { name: "TX - EL PASO", port: "HOUSTON, TX", price: "$1,650" }
+        { name: "TX - Waco", port: "HOUSTON, TX", price: "$1,459", keys: "tx texas waco" },
+        { name: "TX - HOUSTON EAST / North / South", port: "HOUSTON, TX", price: "$1,324", keys: "tx texas houston" },
+        { name: "TX - Dallas / Fort Worth", port: "HOUSTON, TX", price: "$1,349", keys: "tx texas dallas fort worth" },
+        { name: "TX - San Antonio / Austin", port: "HOUSTON, TX", price: "$1,414", keys: "tx texas san antonio austin" },
+        { name: "TX - MCALLEN / HARLINGEN", port: "HOUSTON, TX", price: "$1,480", keys: "tx texas mcallen harlingen" },
+        { name: "TX - EL PASO", port: "HOUSTON, TX", price: "$1,650", keys: "tx texas el paso" }
     ];
 
     function renderTable(data) {
@@ -399,6 +408,7 @@
         }
 
         let searchTerm = rawInput
+            .replace(/نیوجێرسی|نیو جێرسی/g, "nj")
             .replace(/کالیفۆرنیای باکوور|کالیفۆرنیای باکور|باكوری كالیفۆرنیا|باکووری کالیفۆرنیا/g, "north california")
             .replace(/کۆنکۆرد|کۆنکورد/g, "concord")
             .replace(/ئەلاسکا|ئەلاسكا/g, "alaska")
@@ -409,8 +419,8 @@
             .replace(/ئۆهایۆ/g, "oh");
 
         const filtered = shippingData.filter(item => {
-            const cityName = item.name.toLowerCase();
-            return cityName.includes(searchTerm);
+            const fullText = (item.name + " " + item.port + " " + (item.keys || "")).toLowerCase();
+            return fullText.includes(searchTerm);
         });
 
         renderTable(filtered);
