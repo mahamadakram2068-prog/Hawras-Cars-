@@ -1,292 +1,3 @@
-<!DOCTYPE html>
-<html lang="ckb" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hawras Cars - نرخەکانی نەقڵ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #071728;
-            --card-bg: #0d233a;
-            --accent-yellow: #f5b000;
-            --accent-hover: #ffd000;
-            --text-white: #ffffff;
-            --text-dim: #94a3b8;
-            --border-color: #1e3a5f;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Vazirmatn', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-white);
-            padding: 20px 15px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            padding: 20px 0;
-            margin-bottom: 25px;
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        .logo-box {
-            margin: 0 auto 15px;
-            max-width: 260px;
-        }
-
-        .logo-box img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(245, 176, 0, 0.15);
-        }
-
-        h1 {
-            color: var(--accent-yellow);
-            font-size: 2.2rem;
-            font-weight: 900;
-            letter-spacing: 1px;
-        }
-
-        .sub-title {
-            color: var(--text-dim);
-            font-size: 0.95rem;
-            margin-top: 5px;
-            letter-spacing: 0.5px;
-        }
-
-        .contact-number {
-            display: inline-block;
-            margin-top: 10px;
-            background: rgba(245, 176, 0, 0.1);
-            color: var(--accent-yellow);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-weight: bold;
-            border: 1px solid var(--accent-yellow);
-            direction: ltr;
-        }
-
-        .search-container {
-            margin-bottom: 20px;
-        }
-
-        .search-box {
-            position: relative;
-            width: 100%;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 16px 20px;
-            font-size: 1.1rem;
-            background-color: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 14px;
-            color: var(--text-white);
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .search-box input:focus {
-            border-color: var(--accent-yellow);
-            box-shadow: 0 0 15px rgba(245, 176, 0, 0.2);
-        }
-
-        /* بەشی خشتەی نرخەکان */
-        .table-responsive {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            display: none;
-            margin-bottom: 25px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: right;
-        }
-
-        th {
-            background-color: rgba(245, 176, 0, 0.15);
-            color: var(--accent-yellow);
-            padding: 16px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        td {
-            padding: 14px 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.98rem;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:hover td {
-            background-color: rgba(255, 255, 255, 0.03);
-        }
-
-        .port-name {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
-
-        .price-tag {
-            color: var(--accent-yellow);
-            font-weight: 900;
-            font-size: 1.1rem;
-            direction: ltr;
-            display: inline-block;
-        }
-
-        .no-result {
-            text-align: center;
-            padding: 30px;
-            color: var(--text-dim);
-            background-color: var(--card-bg);
-            border-radius: 14px;
-            border: 1px solid var(--border-color);
-            display: none;
-            margin-bottom: 25px;
-        }
-
-        /* بەشی مەرجەکان (کەوتۆتە خوارەوەی سێرچەکە و خشتەکە) */
-        .terms-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .terms-card ul {
-            list-style-type: none;
-        }
-
-        .terms-card li {
-            position: relative;
-            padding-right: 25px;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #e2e8f0;
-        }
-
-        .terms-card li:last-child {
-            margin-bottom: 0;
-        }
-
-        .terms-card li::before {
-            content: "•";
-            color: var(--accent-yellow);
-            font-size: 1.5rem;
-            position: absolute;
-            right: 0;
-            top: -3px;
-        }
-
-        .terms-footer {
-            text-align: center;
-            margin-top: 15px;
-            padding-top: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--accent-yellow);
-            font-weight: bold;
-        }
-
-        @media (max-width: 600px) {
-            th, td {
-                padding: 12px 10px;
-                font-size: 0.88rem;
-            }
-
-            .price-tag {
-                font-size: 1rem;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            .terms-card li {
-                font-size: 0.88rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <header>
-        <div class="logo-box">
-            <img src="logo.jpg" alt="Hawras Cars Logo" id="main-logo" onerror="this.style.display='none'">
-        </div>
-        <h1>HAWRAS CARS</h1>
-        <div class="sub-title">AUCTION USA - CANADA | IAAI & COPART</div>
-        <div class="contact-number">📞 0771 011 3663</div>
-    </header>
-
-    <div class="search-container">
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="🔍 ناو یان کورتکراوەی شار بپشکنە (نموونە: Chicago, TX, Houston)..." oninput="filterData()">
-        </div>
-    </div>
-
-    <!-- ۱. خشتەی نرخەکان ڕاستەوخۆ دەکەوێتە ژێر سێرچەکە کاتێک سێرچ دەکەیت -->
-    <div id="tableContainer" class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th>شار / لق (Branch & City)</th>
-                    <th>بەندەری مەقسەد (Destination)</th>
-                    <th>کۆی نرخ (Total Cost)</th>
-                </tr>
-            </thead>
-            <tbody id="shippingTable">
-            </tbody>
-        </table>
-    </div>
-
-    <div id="noResults" class="no-result">
-        هیچ ئەنجامێک بەم ناوانە نەدۆزرایەوە!
-    </div>
-
-    <!-- ۲. بەشی مەرجەکان دەکەوێتە ژێر خشتەی سێرچەکە -->
-    <div class="terms-card">
-        <ul>
-            <li>کۆمپانیای هەوراس بەرپرس نیە لە هەموو پێشهات و ئەگەرێک لە گران بوونی کرێی گواستنەوە لە بوونی شەڕ و درەنگ کەوتنیان.</li>
-            <li>کۆمپانیای بەرپرس نیە لە هەر زەرەر و زیانێک بەر ئۆتۆمبێل بکەوێت بە هۆکار و کارەساتی سروشتی.</li>
-            <li>شێوازی پارەدان بە شێوەی کاشە واتە ئەگەر ئەمڕۆ ئۆتۆمبێل بکڕیت بۆ ڕۆژی دواتر دەبێت پارە واصل بکرێت.</li>
-            <li>ئۆتۆمبێلی SUV هیچ بڕە پارەیەکی زیادەی ناچێتە سەر جگە لەو ئۆتۆمبێلانەی کە قەبارەیان زۆر گەورەیە.</li>
-            <li>ئەم لیستی نەقڵە بۆ مێرسینە نرخەکان بە دۆلاری ئه‌مریکین.</li>
-        </ul>
-        <div class="terms-footer">
-            لەگەڵ ڕێزدا.
-        </div>
-    </div>
-</div>
-
 <script>
     const shippingData = [
         // ILLINOIS (IL)
@@ -461,7 +172,64 @@
 
         // IDAHO (ID)
         { name: "ID - IDAHO (MERIDIAN)", port: "LOS ANGELES, CA", price: "$2,228" },
-        { name: "ID - IDAHO (BOISE)", port: "LOS ANGELES, CA", price: "$2,378" }
+        { name: "ID - IDAHO (BOISE)", port: "LOS ANGELES, CA", price: "$2,378" },
+
+        // PENNSYLVANIA (PA)
+        { name: "PA - PHILADELPHIA (Manheim Philadelphia)", port: "BALTIMORE, MD", price: "$1,479" },
+        { name: "PA - PHILADELPHIA (Grantville)", port: "BALTIMORE, MD", price: "$1,454" },
+        { name: "PA - ALTOONA (EBENSBURG)", port: "BALTIMORE, MD", price: "$1,579" },
+        { name: "PA - ALTOONA (IAA) (EAST FREEDOM)", port: "BALTIMORE, MD", price: "$1,579" },
+        { name: "PA - YORK SPRINGS", port: "BALTIMORE, MD", price: "$1,469" },
+        { name: "PA - BRIDGEPORT", port: "BALTIMORE, MD", price: "$1,444" },
+        { name: "PA - HARRISBURG (GRANTVILLE)", port: "BALTIMORE, MD", price: "$1,554" },
+        { name: "PA - PITTSBURGH NORTH (Ellwood City)", port: "BALTIMORE, MD", price: "$1,629" },
+        { name: "PA - YORK HAVEN", port: "BALTIMORE, MD", price: "$1,469" },
+        { name: "PA - PITTSBURGH (Uniontown ACV)", port: "BALTIMORE, MD", price: "$1,804" },
+        { name: "PA - PITTSBURG EAST (ADAMSBURG)", port: "BALTIMORE, MD", price: "$1,594" },
+        { name: "PA - SCRANTON (DURYEA)", port: "BALTIMORE, MD", price: "$1,604" },
+        { name: "PA - SCRANTON (Pittston)", port: "BALTIMORE, MD", price: "$1,474" },
+        { name: "PA - ADAMSBURG", port: "BALTIMORE, MD", price: "$1,614" },
+        { name: "PA - PHILADELPHIA (Conshohocken)", port: "BALTIMORE, MD", price: "$1,529" },
+        { name: "PA - PHILADELPHIA EAST (Adamsburg)", port: "BALTIMORE, MD", price: "$1,594" },
+        { name: "PA - COOPERSBURG", port: "BALTIMORE, MD", price: "$1,504" },
+        { name: "PA - ERIE (GARLAND)", port: "BALTIMORE, MD", price: "$1,679" },
+        { name: "PA - Pittsburgh-North (Gibsonia)", port: "BALTIMORE, MD", price: "$1,654" },
+        { name: "PA - PITTSBURGH WEST (West Mifflin)", port: "BALTIMORE, MD", price: "$1,629" },
+        { name: "PA - Uniontown (Uniontown act)", port: "BALTIMORE, MD", price: "$1,854" },
+        { name: "PA - PITTSBURG SOUTH (WEST MIFFLIN)", port: "BALTIMORE, MD", price: "$1,629" },
+        { name: "PA - PITTSBURGH (Aliquippa)", port: "BALTIMORE, MD", price: "$1,629" },
+        { name: "PA - PHILADELPHIA (Pennsburg)", port: "BALTIMORE, MD", price: "$1,454" },
+        { name: "PA - PHILADELPHIA EAST (CHALFONT)", port: "BALTIMORE, MD", price: "$1,439" },
+        { name: "PA - PITTSBURGH South (West Mifflin)", port: "BALTIMORE, MD", price: "$1,629" },
+        { name: "PA - PHILADELPHIA (Malvern)", port: "BALTIMORE, MD", price: "$1,504" },
+        { name: "PA - Pennsylvania (Manheim Pennsylvania)", port: "BALTIMORE, MD", price: "$1,454" },
+        { name: "PA - PHILADELPHIA (East Sub lot)", port: "BALTIMORE, MD", price: "$1,434" },
+        { name: "PA - CHAMBERSBURG", port: "BALTIMORE, MD", price: "$1,554" },
+
+        // RHODE ISLAND (RI)
+        { name: "RI - EXETER", port: "NEW JERSEY, NJ", price: "$1,250" },
+        { name: "RI - PROVIDENCE (EAST PROVIDENCE)", port: "NEW JERSEY, NJ", price: "$1,250" },
+
+        // SOUTH CAROLINA (SC)
+        { name: "SC - Greenville (Simpsonville)", port: "SAVANNAH, GA", price: "$1,095" },
+        { name: "SC - Lexington", port: "SAVANNAH, GA", price: "$1,040" },
+        { name: "SC - Spartanburg", port: "SAVANNAH, GA", price: "$1,100" },
+        { name: "SC - Columbia (Gaston)", port: "SAVANNAH, GA", price: "$1,050" },
+        { name: "SC - Charleston/North (Charleston Ravenel)", port: "SAVANNAH, GA", price: "$1,040" },
+        { name: "SC - Darlington", port: "SAVANNAH, GA", price: "$1,065" },
+        { name: "SC - Darlington (Darlington Manheim)", port: "SAVANNAH, GA", price: "$1,125" },
+        { name: "SC - Harleysville", port: "SAVANNAH, GA", price: "$1,040" },
+        { name: "SC - Greer", port: "SAVANNAH, GA", price: "$1,050" },
+
+        // TENNESSEE (TN)
+        { name: "TN - NASHVILLE (OLD HICKORY)", port: "SAVANNAH, GA", price: "$1,375" },
+        { name: "TN - NASHVILLE (LEBANON)", port: "SAVANNAH, GA", price: "$1,225" },
+        { name: "TN - NASHVILLE (MANHEIM, Mt. Juliet)", port: "SAVANNAH, GA", price: "$1,375" },
+        { name: "TN - MADISONVILLE", port: "SAVANNAH, GA", price: "$1,190" },
+        { name: "TN - KNOXVILLE (MADISONVILLE)", port: "SAVANNAH, GA", price: "$1,190" },
+        { name: "TN - CHATTANOOGA", port: "SAVANNAH, GA", price: "$1,190" },
+        { name: "TN - MEMPHIS (Millington)", port: "SAVANNAH, GA", price: "$1,290" },
+        { name: "TN - Tullahoma (MANHEIM, Tullahoma)", port: "SAVANNAH, GA", price: "$1,425" }
     ];
 
     function renderTable(data) {
@@ -507,6 +275,8 @@
             .replace(/تێکساس/g, "tx")
             .replace(/جۆرجیا/g, "ga")
             .replace(/فلۆریدا/g, "fl")
+            .replace(/پێنسلڤانیا|پێنسلڤێنیا/g, "pa")
+            .replace(/تێنسی/g, "tn")
             .replace(/مەیامی/g, "miami");
 
         const filtered = shippingData.filter(item => {
@@ -517,6 +287,3 @@
         renderTable(filtered);
     }
 </script>
-
-</body>
-</html>
