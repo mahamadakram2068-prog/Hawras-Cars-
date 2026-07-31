@@ -106,51 +106,7 @@
             box-shadow: 0 0 15px rgba(245, 176, 0, 0.2);
         }
 
-        /* بەشی مەرجەکان */
-        .terms-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .terms-card ul {
-            list-style-type: none;
-        }
-
-        .terms-card li {
-            position: relative;
-            padding-right: 25px;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #e2e8f0;
-        }
-
-        .terms-card li:last-child {
-            margin-bottom: 0;
-        }
-
-        .terms-card li::before {
-            content: "•";
-            color: var(--accent-yellow);
-            font-size: 1.5rem;
-            position: absolute;
-            right: 0;
-            top: -3px;
-        }
-
-        .terms-footer {
-            text-align: center;
-            margin-top: 15px;
-            padding-top: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--accent-yellow);
-            font-weight: bold;
-        }
-
+        /* بەشی خشتەی نرخەکان */
         .table-responsive {
             background-color: var(--card-bg);
             border-radius: 16px;
@@ -158,6 +114,7 @@
             border: 1px solid var(--border-color);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             display: none;
+            margin-bottom: 25px;
         }
 
         table {
@@ -210,6 +167,52 @@
             border-radius: 14px;
             border: 1px solid var(--border-color);
             display: none;
+            margin-bottom: 25px;
+        }
+
+        /* بەشی مەرجەکان (کەوتۆتە خوارەوەی سێرچەکە و خشتەکە) */
+        .terms-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .terms-card ul {
+            list-style-type: none;
+        }
+
+        .terms-card li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+
+        .terms-card li:last-child {
+            margin-bottom: 0;
+        }
+
+        .terms-card li::before {
+            content: "•";
+            color: var(--accent-yellow);
+            font-size: 1.5rem;
+            position: absolute;
+            right: 0;
+            top: -3px;
+        }
+
+        .terms-footer {
+            text-align: center;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--accent-yellow);
+            font-weight: bold;
         }
 
         @media (max-width: 600px) {
@@ -250,20 +253,7 @@
         </div>
     </div>
 
-    <!-- بەشی مەرجەکان -->
-    <div class="terms-card">
-        <ul>
-            <li>کۆمپانیای هۆراس بەڕێپرس نییە لە هەموو پێشهات و ئەگەرێک لە گران بوونی کرێی گواستنەوە لە بوونی شەڕ و درەنگ کەوتنیان.</li>
-            <li>کۆمپانیا بەڕێپرس نییە لە هەر زەرەر و زیانێک بەڕ ئۆتۆمبێل بکەوێت بە هۆکار و کارهەساتی سروشتی.</li>
-            <li>شێوازی پارەدان بە شێوەی کاشە واتە ئەگەر ئەمڕۆ ئۆتۆمبێل بڕێت بۆ ڕۆژی دواتر دەبێت پارە واصل بپڕێت.</li>
-            <li>ئۆتۆمبێلی SUV هیچ بڕە پارەیەکی زیادەی ناچێتە سەر جگە لەو ئۆتۆمبێلانەی کە قەبارەیان زۆر گەورەیە.</li>
-            <li>ئەم لیستی نەقڵە بۆ مێرسینە نرخەکان بە دۆلاری ئه‌مریکی ن.</li>
-        </ul>
-        <div class="terms-footer">
-            لەگەڵ ڕێزدا.
-        </div>
-    </div>
-
+    <!-- ۱. خشتەی نرخەکان ڕاستەوخۆ دەکەوێتە ژێر سێرچەکە کاتێک سێرچ دەکەیت -->
     <div id="tableContainer" class="table-responsive">
         <table>
             <thead>
@@ -280,6 +270,20 @@
 
     <div id="noResults" class="no-result">
         هیچ ئەنجامێک بەم ناوانە نەدۆزرایەوە!
+    </div>
+
+    <!-- ۲. بەشی مەرجەکان دەکەوێتە ژێر خشتەی سێرچەکە -->
+    <div class="terms-card">
+        <ul>
+            <li>کۆمپانیای هەوراس بەرپرس نیە لە هەموو پێشهات و ئەگەرێک لە گران بوونی کرێی گواستنەوە لە بوونی شەڕ و درەنگ کەوتنیان.</li>
+            <li>کۆمپانیای بەرپرس نیە لە هەر زەرەر و زیانێک بەر ئۆتۆمبێل بکەوێت بە هۆکار و کارەساتی سروشتی.</li>
+            <li>شێوازی پارەدان بە شێوەی کاشە واتە ئەگەر ئەمڕۆ ئۆتۆمبێل بکڕیت بۆ ڕۆژی دواتر دەبێت پارە واصل بکرێت.</li>
+            <li>ئۆتۆمبێلی SUV هیچ بڕە پارەیەکی زیادەی ناچێتە سەر جگە لەو ئۆتۆمبێلانەی کە قەبارەیان زۆر گەورەیە.</li>
+            <li>ئەم لیستی نەقڵە بۆ مێرسینە نرخەکان بە دۆلاری ئه‌مریکین.</li>
+        </ul>
+        <div class="terms-footer">
+            لەگەڵ ڕێزدا.
+        </div>
     </div>
 </div>
 
@@ -498,7 +502,6 @@
             return;
         }
 
-        // وەرگێڕانی وشە کوردییە باوەکان
         let searchTerm = rawInput
             .replace(/چیکاهۆ|شیکاگو|چیکاگو/g, "chicago")
             .replace(/تێکساس/g, "tx")
@@ -506,7 +509,6 @@
             .replace(/فلۆریدا/g, "fl")
             .replace(/مەیامی/g, "miami");
 
-        // فیلتەرکردنی تەنها سەر ناوی شار (item.name) بێ گوێدانە ناوی بەندەرەکە
         const filtered = shippingData.filter(item => {
             const cityName = item.name.toLowerCase();
             return cityName.includes(searchTerm);
